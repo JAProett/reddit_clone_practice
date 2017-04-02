@@ -5,7 +5,7 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	usersRouter = require("./routes/users");
 require("locus");
-app.set("view engine", "jade");
+app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(morgan("tiny"));
 app.use(bodyParser.urlencoded({extended:true}));

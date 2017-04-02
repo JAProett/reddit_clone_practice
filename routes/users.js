@@ -37,5 +37,20 @@ router.route("/new")
 	  res.render('users/new');
 	});
 
+// this handles a specific id route
+router.route('/:id')
+	.get((req, res) => {
+	  knex('users')
+	    .select('id', 'username', 'full_name', 'img_url')
+	    .where({ id: req.params.id })
+			// limit 1
+	    .first()
+	    .then((user) => {
+				// this passes the user to the ejs template
+	      res.render('users/show', {
+	        user
+	      });
+	    });
+	})
 
 module.exports = router;

@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/reddit_clone',
+    connection: 'postgres://localhost/reddit_clone_knex_3',
     degug: true
   },
 

@@ -13,16 +13,29 @@ router.route('/')
 				img_url: req.body.user.img_url
 			})
 			.returning('id')
-			.then(function(id) {
+			.then((id) => {
 				res.redirect(`/users/${id}`);
+			});
+	})
+	.get((req, res) => {
+	  knex('users')
+	    .select('id', 'username')
+			.orderBy('id', 'asc')
+	    .then((users) => {
+				// render the view engine template w/ users passed in
+	      res.render('users/index', {
+					// the users key & value are the same so this is {users: users}
+	        users
+	      });
 			});
 	});
 
 
 // this is where users will go to add a new user
 router.route("/new")
-	.get(function(req, res){
+	.get((req, res) => {
 	  res.render('users/new');
 	});
+
 
 module.exports = router;

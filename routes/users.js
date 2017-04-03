@@ -52,5 +52,35 @@ router.route('/:id')
 	      });
 	    });
 	})
+	.put((req, res) => {
+	  knex('users')
+	    .update({
+	      full_name: req.body.user.full_name,
+	      username: req.body.user.username,
+	      img_url: req.body.user.img_url
+	    })
+	    .where({
+	      id: req.params.id
+	    })
+	    .then(() => {
+	      res.redirect(`/users/${req.params.id}`);
+	    });
+	});
+
+// this handles editing a single users
+router.route('/:id/edit')
+	.get((req, res) => {
+	  knex('users')
+	    .select('id', 'username', 'full_name', 'img_url')
+	    .where({ id: req.params.id })
+			// limit 1
+	    .first()
+	    .then((user) => {
+				// this passes the user to the ejs template
+	      res.render('users/edit', {
+	        user
+	      });
+	    });
+	});
 
 module.exports = router;

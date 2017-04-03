@@ -39,6 +39,16 @@ router.route("/new")
 
 // this handles a specific id route
 router.route('/:id')
+	.delete((req, res) => {
+		knex('users')
+			.del()
+			.where({
+				id: req.params.id
+			})
+			.then(() => {
+				res.redirect(`/users`);
+			});
+	})
 	.get((req, res) => {
 	  knex('users')
 	    .select('id', 'username', 'full_name', 'img_url')
@@ -82,5 +92,20 @@ router.route('/:id/edit')
 	      });
 	    });
 	});
+
+router.route('/:id/delete')
+	.get(function(req, res){
+		knex('users')
+			.select('id', 'username')
+			.where({
+				id: req.params.id
+			})
+			.first()
+			.then(function(user){
+				res.render('users/delete', {
+					user
+				});
+			});
+		})
 
 module.exports = router;

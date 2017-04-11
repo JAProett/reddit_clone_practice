@@ -10,7 +10,7 @@
   <h1>All Users</h1>
   <ul>
     <% users.forEach(function(user){ %>
-       <li><%= user.username %> <a href="/users/<%= user.id %>">View</a> <a href="/users/<%= user.id %>/edit">Edit</a> <a href="/users/<%= user.id %>/delete">Delete</a></li>
+       <li><%= user.username %> <a href="/users/<%= user.id %>">View</a> <a href="/users/<%= user.id %>/edit">Edit</a> <a href="/users/<%= user.id %>/delete">Delete</a> <a href="/users/<%= user.id %>/posts">Posts</a></li>
     <% }); %>
   </ul>
 </body>

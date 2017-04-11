@@ -4,6 +4,10 @@ var express = require("express"),
 	morgan = require("morgan"),
 	bodyParser = require("body-parser"),
 	usersRouter = require("./routes/users");
+	postsRouter = require("./routes/posts");
+	commentsRouter = require("./routes/comments");
+
+
 require("locus");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -17,6 +21,9 @@ app.get("/", function(req, res){
 
 // Routes
 app.use("/users", usersRouter);
+app.use("/posts", postsRouter);
+app.use("/comments", commentsRouter);
+
 
 
 // app.get("*", function(req,res){
